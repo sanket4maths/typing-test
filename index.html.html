@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Maths Plus - Official Typing Examination Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .passage-paper {
+      user-select: none;
+      line-height: 1.85;
+      color: #1e293b;
+      white-space: pre-wrap;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printScorecardArea, #printScorecardArea * {
+        visibility: visible;
+      }
+      #printScorecardArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        background: white;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+  <header class="bg-slate-900 border-b border-slate-800 text-white shadow-lg sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand Details -->
+      <div class="flex items-center space-x-3.5">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-500 flex items-center justify-center font-extrabold text-xl shadow-md border border-blue-400/40 text-white">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-extrabold tracking-tight text-white uppercase">
+              Career Maths Plus
+            </h1>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              OFFICIAL EXAM PORTAL
+            </span>
+          </div>
+          <p class="text-xs text-slate-300 flex items-center gap-2">
+            <span>Faculty: <strong class="text-amber-400 font-semibold">Sanket Chowdhury</strong></span>
+            <span class="text-slate-600">•</span>
+            <a href="tel:8001514969" class="hover:text-blue-300 transition flex items-center gap-1 font-mono-code text-slate-200">
+              <i class="fa-solid fa-phone text-emerald-400 text-[10px]"></i> 8001514969
+            </a>
+            <a href="https://wa.me/918001514969" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-300 text-emerald-400 transition ml-1" title="Chat on WhatsApp">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Header Action Toolbar -->
+      <div class="flex items-center flex-wrap gap-2 text-xs">
+        <button id="openLeaderboardBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-trophy"></i>
+          Leaderboard
+        </button>
+
+        <div class="bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5 shadow-inner">
+          <span class="text-slate-400 font-medium">Text Size:</span>
+          <button id="fontSizeDecBtn" class="px-2 py-0.5 bg-slate-700 hover:bg-slate-600 rounded text-slate-200 font-bold transition" title="Decrease font size">A-</button>
+          <button id="fontSizeIncBtn" class="px-2 py-0.5 bg-slate-700 hover:bg-slate-600 rounded text-slate-200 font-bold transition" title="Increase font size">A+</button>
+        </div>
+        
+        <button id="rulesModalBtn" class="bg-blue-900/60 hover:bg-blue-800 border border-blue-600/40 text-blue-200 hover:text-white px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-book-open text-blue-400"></i>
+          Marking Rules
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Candidate Registration Screen -->
+  <div id="registrationScreen" class="flex-1 flex items-center justify-center p-4 sm:p-6">
+    <div class="max-w-lg w-full bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+      <div class="bg-slate-900 p-6 text-white text-center border-b border-slate-800">
+        <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-blue-600/30 border border-blue-400/40 flex items-center justify-center text-2xl text-blue-300">
+          <i class="fa-solid fa-id-card"></i>
+        </div>
+        <h2 class="text-xl font-bold uppercase tracking-wide">Candidate Verification & Entry</h2>
+        <p class="text-xs text-slate-300 mt-1">Please enter your verified details to initialize the 10-Minute Typing Test</p>
+      </div>
+
+      <form id="candidateEntryForm" class="p-6 sm:p-8 space-y-4">
+        <div>
+          <label for="candNameInput" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+            Candidate Full Name <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+              <i class="fa-solid fa-user"></i>
+            </span>
+            <input 
+              type="text" 
+              id="candNameInput" 
+              required 
+              placeholder="e.g. Rahul Sharma" 
+              class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition"
+            />
+          </div>
+          <span id="nameError" class="text-[11px] text-red-600 hidden font-medium mt-1">Please enter candidate name.</span>
+        </div>
+
+        <div>
+          <label for="candPhoneInput" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+            Contact / Mobile Number <span class="text-red-500">*</span>
+          </label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 font-mono-code text-xs font-bold">
+              +91
+            </span>
+            <input 
+              type="tel" 
+              id="candPhoneInput" 
+              required 
+              maxlength="10" 
+              placeholder="10-digit mobile number" 
+              class="w-full pl-12 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 font-mono-code font-semibold focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition"
+            />
+          </div>
+          <span id="phoneError" class="text-[11px] text-red-600 hidden font-medium mt-1">Please enter a valid 10-digit mobile number.</span>
+        </div>
+
+        <div>
+          <label for="candCategoryInput" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+            Candidate Category (Rules 3, 4 & 6) <span class="text-red-500">*</span>
+          </label>
+          <select 
+            id="candCategoryInput" 
+            class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-800 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition"
+          >
+            <option value="general" selected>General / Other Candidates (Min. 200 Words, Cutoff 140)</option>
+            <option value="pwd">Blind / Low Vision / LDCP Candidates (Min. 120 Words, Cutoff 84)</option>
+          </select>
+        </div>
+
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-900 flex items-center justify-between">
+          <span class="flex items-center gap-2 font-medium">
+            <i class="fa-solid fa-stopwatch text-blue-600 text-sm"></i> Exam Duration (Official Rule):
+          </span>
+          <span class="font-bold font-mono-code bg-white px-2.5 py-1 rounded border border-blue-300 text-blue-800">
+            10:00 Minutes (Fixed)
+          </span>
+        </div>
+
+        <button 
+          type="submit" 
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm mt-2"
+        >
+          <span>Verify & Proceed to Typing Console</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <div class="bg-slate-50 border-t border-slate-200 p-3 text-center text-xs text-slate-500">
+        Managed by <strong>Career Maths Plus</strong> • Guidance by <strong>Sanket Chowdhury (8001514969)</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Examination Workspace -->
+  <main id="examWorkspaceScreen" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 w-full flex-1 hidden">
+    
+    <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-blue-950 text-white rounded-xl shadow-md p-3.5 mb-4 flex flex-wrap items-center justify-between gap-4 border border-slate-700">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow">
+          <i class="fa-solid fa-user-check"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 id="displayCandName" class="font-bold text-base text-white">Candidate Name</h3>
+            <span id="displayRegId" class="text-[10px] font-mono-code bg-slate-700 px-2 py-0.5 rounded text-slate-300 border border-slate-600">ROLL: CMP-0000</span>
+          </div>
+          <p class="text-xs text-slate-300 flex items-center gap-2 mt-0.5">
+            <span>Mobile: <strong id="displayCandPhone" class="font-mono-code text-amber-300">----------</strong></span>
+            <span class="text-slate-600">•</span>
+            <span>Category: <strong id="displayCandCat" class="text-blue-300">General</strong></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="changeCandidateBtn" class="text-xs text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700 border border-slate-600 px-2.5 py-1.5 rounded-lg transition flex items-center gap-1.5">
+          <i class="fa-solid fa-user-pen text-amber-400"></i> Change Candidate
+        </button>
+      </div>
+    </div>
+
+    <!-- Controls Panel -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 mb-4 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+      <div>
+        <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+          Prescribed Examination Norm
+        </span>
+        <div id="targetSummaryBadge" class="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 flex items-center justify-between">
+          <span>Target: <strong class="text-blue-700 font-bold" id="badgeMinWords">200 Words</strong></span>
+          <span class="text-slate-400">|</span>
+          <span>Cutoff: <strong class="text-emerald-700 font-bold" id="badgeCutoff">140 Marks</strong></span>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 rounded-lg p-2.5 flex items-center justify-between text-white border border-slate-800 shadow-inner">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 block">Remaining Time (Strict 10 Mins)</span>
+          <span id="timerDisplay" class="text-2xl font-mono-code font-bold tracking-wider text-emerald-400">10:00</span>
+        </div>
+        <div id="testStatusBadge" class="text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-semibold border border-slate-700">
+          Ready
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="startTestBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-3 rounded-lg text-sm transition shadow-sm flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-play text-xs"></i>
+          Start
+        </button>
+        <button id="pauseTestBtn" disabled class="bg-amber-600 disabled:opacity-40 hover:bg-amber-700 text-white font-semibold py-2 px-3 rounded-lg text-sm transition shadow-sm">
+          Pause
+        </button>
+        <button id="submitTestBtn" disabled class="bg-blue-600 disabled:opacity-40 hover:bg-blue-700 text-white font-semibold py-2 px-3 rounded-lg text-sm transition shadow-sm">
+          Submit
+        </button>
+        <button id="resetTestBtn" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-2 px-3 rounded-lg text-sm transition shadow-sm" title="Reset Test">
+          <i class="fa-solid fa-arrow-rotate-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Performance Metrics -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white border border-slate-200 rounded-lg p-3 shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-500 font-medium">Words Typed</p>
+          <p id="liveTypedWords" class="text-xl font-bold text-slate-800">0</p>
+        </div>
+        <span class="text-blue-500 text-lg"><i class="fa-solid fa-keyboard"></i></span>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-lg p-3 shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-500 font-medium">Min. Target Words</p>
+          <p id="liveTargetWords" class="text-xl font-bold text-blue-600">200</p>
+        </div>
+        <span class="text-emerald-500 text-lg"><i class="fa-solid fa-bullseye"></i></span>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-lg p-3 shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-500 font-medium">Current Speed</p>
+          <p id="liveGrossWpm" class="text-xl font-bold text-slate-800">0 <span class="text-xs font-normal text-slate-400">WPM</span></p>
+        </div>
+        <span class="text-amber-500 text-lg"><i class="fa-solid fa-gauge-high"></i></span>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-lg p-3 shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-500 font-medium">Passage Cycle / Loops</p>
+          <p id="livePassageLoop" class="text-xl font-bold text-purple-600">Round 1</p>
+        </div>
+        <span class="text-purple-500 text-lg"><i class="fa-solid fa-repeat"></i></span>
+      </div>
+    </div>
+
+    <!-- Work Area Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div class="bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col overflow-hidden">
+        <div class="bg-slate-50 border-b border-slate-200 px-4 py-2.5 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-700">Official Exam Question Paper Matter</span>
+          </div>
+          <span class="text-xs bg-slate-200 text-slate-700 font-semibold px-2 py-0.5 rounded">
+            204 Words Passage
+          </span>
+        </div>
+        
+        <div id="referenceTextContainer" class="p-5 overflow-y-auto max-h-[320px] lg:max-h-[400px] text-base font-normal leading-relaxed bg-slate-50/40 border-b border-slate-100 text-slate-800">
+          <p id="referenceMatterParagraph" class="passage-paper font-serif text-[15px] sm:text-[16px] text-justify select-none"></p>
+        </div>
+
+        <div class="bg-slate-50 px-4 py-2.5 text-xs text-slate-600 flex items-center justify-between border-t border-slate-200">
+          <span class="flex items-center gap-1.5 text-slate-500">
+            <i class="fa-solid fa-lock text-slate-400"></i> Static physical layout (No word highlights or auto-scrolling jumps).
+          </span>
+          <span class="font-semibold text-blue-700">Career Maths Plus</span>
+        </div>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col overflow-hidden">
+        <div class="bg-slate-50 border-b border-slate-200 px-4 py-2 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-700">Candidate Typing Console</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded border border-emerald-300 flex items-center gap-1">
+              <i class="fa-solid fa-arrow-turn-down text-[10px]"></i> Press [Enter ↵] to retype
+            </span>
+          </div>
+        </div>
+
+        <div class="relative flex-1 p-2 bg-white flex flex-col">
+          <textarea
+            id="typingInput"
+            disabled
+            spellcheck="false"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Click 'Start' above to activate the 10:00 examination timer..."
+            class="w-full flex-1 p-3 text-slate-900 border-0 focus:outline-none resize-none leading-relaxed text-base disabled:bg-slate-100 disabled:text-slate-400 min-h-[260px] lg:min-h-[350px] font-mono-code"
+          ></textarea>
+          
+          <div id="typingLockOverlay" class="absolute inset-0 bg-slate-900/10 backdrop-blur-[1px] flex items-center justify-center rounded-b-xl">
+            <div class="bg-white border border-slate-300 shadow-xl rounded-xl p-4 text-center max-w-sm">
+              <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                <i class="fa-solid fa-keyboard"></i>
+              </div>
+              <p class="text-sm font-bold text-slate-800">Examination Console Locked</p>
+              <p class="text-xs text-slate-500 mt-1">Press the green <strong>"Start"</strong> button above to start your 10:00 minutes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 border-t border-slate-200 px-4 py-2 text-xs text-slate-500 flex items-center justify-between">
+          <span id="charCountBadge">0 Total Keystrokes</span>
+          <span class="text-slate-600 font-medium">Copy & Paste Strictly Blocked</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Guidelines Notice Strip -->
+    <div class="mt-4 bg-blue-50/80 border border-blue-200 rounded-xl p-3.5 text-xs text-blue-950 flex items-start justify-between gap-3 shadow-sm">
+      <div class="flex items-start gap-2.5">
+        <i class="fa-solid fa-circle-info text-blue-600 text-base mt-0.5 flex-shrink-0"></i>
+        <div>
+          <span class="font-bold text-blue-900">Marking Formula & Retype Instruction:</span>
+          Accuracy Marks are computed strictly as: <span class="font-mono-code font-bold">Marks = Typed Words — 0.33 × Major — 0.15 × Minor</span>.
+          Once you complete the 204 words, simply press <strong>[Enter ↵]</strong> to loop and continue typing from the beginning without losing count.
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-3 text-right flex-shrink-0 border-l border-blue-200 pl-3">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-slate-500 block">Faculty Inquiries</span>
+          <span class="font-bold text-slate-800">Sanket Chowdhury</span>
+          <span class="block font-mono-code text-blue-700 font-bold">8001514969</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Rules Modal -->
+  <div id="rulesModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 flex flex-col">
+      <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-900 text-white rounded-t-2xl">
+        <h3 class="text-base font-bold flex items-center gap-2">
+          <i class="fa-solid fa-scale-balanced text-amber-400"></i>
+          Official Examination Typing Rules & Criteria
+        </h3>
+        <button id="closeRulesBtn" class="text-slate-400 hover:text-white text-xl font-bold px-2 py-0.5 rounded">&times;</button>
+      </div>
+      <div class="p-5 text-sm space-y-4 text-slate-700 leading-relaxed">
+        <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg text-xs text-blue-900">
+          <strong>Institution:</strong> Career Maths Plus | <strong>Faculty:</strong> Sanket Chowdhury | <strong>Contact:</strong> 8001514969
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 text-sm border-b pb-1 mb-2">3. Minimum Word Count for General Candidates</h4>
+          <p class="text-xs">Candidates except Blind / Low Vision / LDCP who type less than <strong>200 words</strong> for English Type Test in <strong>Ten minutes</strong> will be considered as <span class="text-red-600 font-bold">Disqualified</span> for this examination.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 text-sm border-b pb-1 mb-2">4. Minimum Word Count for PwD Candidates</h4>
+          <p class="text-xs">Candidates belonging to Blind / Low Vision / LDCP who type less than <strong>120 words</strong> for English Type Test in <strong>Ten minutes</strong> will be considered as <span class="text-red-600 font-bold">Disqualified</span> for this examination.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 text-sm border-b pb-1 mb-2">5. Nature of Mistakes & Deductions</h4>
+          <ul class="list-disc pl-5 space-y-2 text-xs">
+            <li><strong>a)</strong> Omission of words or insertion of foreign words will be considered as <span class="text-red-600 font-bold">Major Mistake (-0.33 Marks)</span>.</li>
+            <li><strong>b)</strong> Omission of punctuation marks and incorrect punctuation marks will be considered as <span class="text-amber-600 font-bold">Minor Mistake (-0.15 Marks)</span>.</li>
+            <li><strong>c)</strong> Spelling mistake will be considered as <span class="text-red-600 font-bold">Major Mistake (-0.33 Marks)</span>.</li>
+            <li><strong>d)</strong> Insertion of punctuation at the beginning / inside / end of a word will be considered as <span class="text-red-600 font-bold">Major Mistake (-0.33 Marks)</span>.</li>
+            <li><strong>e)</strong> Letter(s) typed in small letter in place of capital letters and vice-versa at the beginning / inside / end of a word will be considered as <span class="text-amber-600 font-bold">Minor Mistake (-0.15 Marks)</span>.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 text-sm border-b pb-1 mb-2">6. Calculation of Marks for Accuracy</h4>
+          <div class="p-3 bg-slate-100 rounded-lg text-xs font-mono-code font-bold mb-2">
+            Marks = No. of Typed Words — (0.33 × Major Mistake) — (0.15 × Minor Mistake)
+          </div>
+          <ul class="list-disc pl-5 space-y-1 text-xs">
+            <li><strong>Qualifying Marks for English (General Category):</strong> 140 Marks</li>
+            <li><strong>Qualifying Marks for Blind / LV & LD/CP (English):</strong> 84 Marks</li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-4 bg-slate-50 border-t border-slate-200 text-right rounded-b-2xl">
+        <button id="gotItRulesBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-xs font-bold transition">
+          Acknowledge & Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scorecard Result Modal -->
+  <div id="resultModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-5">
+    <div id="printScorecardArea" class="bg-white rounded-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto shadow-2xl border border-slate-200 flex flex-col">
+      
+      <!-- Institutional Branding Banner -->
+      <div class="p-5 border-b border-slate-200 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-3 rounded-t-2xl">
+        <div class="flex items-center space-x-3.5">
+          <div class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-2xl font-bold shadow">
+            🎓
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="text-xl font-extrabold tracking-wide uppercase text-white">Career Maths Plus</h2>
+              <span class="text-[10px] bg-amber-400 text-slate-900 px-2 py-0.5 rounded font-extrabold">OFFICIAL SCORECARD</span>
+            </div>
+            <p class="text-xs text-slate-300">
+              Faculty: <span class="text-amber-300 font-semibold">Sanket Chowdhury</span> | Contact: <span class="font-mono-code">8001514969</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 no-print">
+          <button id="printReportBtn" class="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-xs font-bold text-white transition flex items-center gap-1.5 shadow">
+            <i class="fa-solid fa-print"></i> Print Scorecard
+          </button>
+          <button id="closeResultBtn" class="text-slate-400 hover:text-white text-2xl font-bold px-2 py-0.5 rounded">&times;</button>
+        </div>
+      </div>
+
+      <!-- Scorecard Content -->
+      <div class="p-6 space-y-6">
+        
+        <!-- Google Sheet Sync Status Indicator -->
+        <div id="sheetSyncNotice" class="p-2.5 rounded-lg border text-xs flex items-center justify-between bg-slate-50 border-slate-200">
+          <span class="flex items-center gap-2 font-medium text-slate-700">
+            <i class="fa-solid fa-cloud-arrow-up text-blue-600"></i> Google Sheet Backup:
+          </span>
+          <span id="sheetSyncStatusText" class="font-semibold text-slate-500 font-mono-code text-[11px]">
+            Waiting for URL configuration...
+          </span>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div>
+            <span class="text-[11px] uppercase tracking-wider font-semibold text-slate-500 block">Candidate Name</span>
+            <span id="scoreCandName" class="font-bold text-slate-900 text-sm">--</span>
+          </div>
+          <div>
+            <span class="text-[11px] uppercase tracking-wider font-semibold text-slate-500 block">Contact Number</span>
+            <span id="scoreCandPhone" class="font-mono-code font-bold text-slate-900 text-sm">--</span>
+          </div>
+          <div>
+            <span class="text-[11px] uppercase tracking-wider font-semibold text-slate-500 block">Examination Roll ID</span>
+            <span id="scoreCandRoll" class="font-mono-code font-bold text-blue-700 text-sm">--</span>
+          </div>
+          <div>
+            <span class="text-[11px] uppercase tracking-wider font-semibold text-slate-500 block">Category</span>
+            <span id="scoreCandCategory" class="font-bold text-slate-900 text-sm">General</span>
+          </div>
+        </div>
+
+        <div id="statusBanner" class="p-4 rounded-xl border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <div id="statusIcon" class="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold">
+              ✓
+            </div>
+            <div>
+              <span class="text-xs uppercase font-bold tracking-wider text-slate-500">Official Result Classification</span>
+              <h3 id="statusTitle" class="text-2xl font-black tracking-tight">QUALIFIED</h3>
+              <p id="statusReason" class="text-xs mt-0.5 text-slate-600 font-medium"></p>
+            </div>
+          </div>
+          <div class="text-right sm:border-l sm:border-slate-200 sm:pl-6 w-full sm:w-auto">
+            <div class="text-xs text-slate-500 font-medium uppercase tracking-wider">Final Computed Marks</div>
+            <div id="finalScoreVal" class="text-3xl font-extrabold text-blue-700 font-mono-code">00.00</div>
+            <div id="cutoffCompareText" class="text-[11px] text-slate-600 mt-0.5 font-semibold">Qualifying Cutoff: 140.00</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs text-slate-500 font-medium">Evaluation Group</div>
+            <div id="resCategory" class="text-sm font-bold text-slate-800 mt-1">General</div>
+            <div id="resMinWordsReq" class="text-[10px] text-slate-500">Min. 200 Required</div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs text-slate-500 font-medium">Typed Words</div>
+            <div id="resTypedWords" class="text-xl font-bold text-slate-800 mt-1">0</div>
+            <div id="resWordCheck" class="text-[10px] font-semibold text-emerald-600">Threshold Check</div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs text-slate-500 font-medium">Major Mistakes</div>
+            <div id="resMajorCount" class="text-xl font-bold text-red-600 mt-1">0</div>
+            <div id="resMajorDeduction" class="text-[10px] text-red-500">-0.00 marks (× 0.33)</div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs text-slate-500 font-medium">Minor Mistakes</div>
+            <div id="resMinorCount" class="text-xl font-bold text-amber-600 mt-1">0</div>
+            <div id="resMinorDeduction" class="text-[10px] text-amber-600">-0.00 marks (× 0.15)</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div class="bg-white border border-slate-200 rounded-lg p-3 text-center">
+            <span class="text-xs text-slate-500">Time Consumed</span>
+            <div id="resTimeTaken" class="font-bold text-slate-800 mt-0.5">10:00</div>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-lg p-3 text-center">
+            <span class="text-xs text-slate-500">Gross Typing Speed</span>
+            <div id="resGrossWpm" class="font-bold text-slate-800 mt-0.5">0.0 WPM</div>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-lg p-3 text-center">
+            <span class="text-xs text-slate-500">Passage Cycles Completed</span>
+            <div id="resCompletedLoops" class="font-bold text-indigo-700 mt-0.5">1 Round</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-1 flex items-center justify-between">
+            <span>Accuracy Calculation Breakdown (Rule 6a)</span>
+            <span class="text-[11px] font-normal text-slate-500">Marks = Words Typed — (0.33 × Major) — (0.15 × Minor)</span>
+          </h4>
+          <div id="formulaBreakdownStr" class="bg-white border border-slate-200 rounded-lg p-3 font-mono-code text-xs text-slate-800 overflow-x-auto whitespace-nowrap font-bold">
+            Marks = 0 — (0.33 × 0) — (0.15 × 0) = 0.00
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 flex items-center justify-between">
+            <span>Detailed Mistake Audit Log (Classified under Rule 5)</span>
+            <span id="mistakeBadgeSummary" class="text-xs text-slate-500">Total Mistakes: 0</span>
+          </h4>
+          <div id="mistakesListContainer" class="border border-slate-200 rounded-xl p-3 max-h-48 overflow-y-auto space-y-2 bg-slate-50/50 text-xs">
+            <p class="text-slate-400 italic text-center py-4">No mistakes recorded!</p>
+          </div>
+        </div>
+
+        <div class="hidden print:block pt-8 border-t border-slate-300 mt-8">
+          <div class="flex justify-between items-end text-xs">
+            <div>
+              <p class="font-bold text-slate-800 uppercase">Career Maths Plus Examination Wing</p>
+              <p class="text-slate-600">Faculty: Sanket Chowdhury (Mobile: 8001514969)</p>
+              <p class="text-slate-500 text-[10px]">Verified through Automated Rule 5 & 6 Evaluation Engine</p>
+            </div>
+            <div class="text-right">
+              <div class="h-10 border-b border-slate-400 w-48 mb-1"></div>
+              <p class="font-bold text-slate-700">Authorized Signature / Seal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between no-print rounded-b-2xl">
+        <button id="retakeExamBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow">
+          <i class="fa-solid fa-arrow-rotate-left"></i> Retake Examination
+        </button>
+        <button id="dismissModalBtn" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-4 py-2.5 rounded-lg text-xs font-semibold transition">
+          Close Scorecard
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Leaderboard Modal -->
+  <div id="leaderboardModal" class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-slate-200 flex flex-col">
+      <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-900 text-white rounded-t-2xl">
+        <h3 class="text-base font-bold flex items-center gap-2">
+          <i class="fa-solid fa-trophy text-amber-400"></i>
+          Career Maths Plus — Top Scorers Leaderboard
+        </h3>
+        <button id="closeLeaderboardBtn" class="text-slate-400 hover:text-white text-xl font-bold px-2 py-0.5 rounded">&times;</button>
+      </div>
+      <div class="p-5 flex-1 overflow-y-auto">
+        <div id="leaderboardContainer" class="space-y-2">
+          <p class="text-center text-slate-400 py-6">Connecting to Google Sheet...</p>
+        </div>
+      </div>
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex justify-between items-center rounded-b-2xl">
+        <span class="text-xs text-slate-500 font-medium">Rankings update automatically from Google Sheet</span>
+        <button id="refreshLeaderboardBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold transition flex items-center gap-1">
+          <i class="fa-solid fa-arrows-rotate"></i> Refresh
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-slate-900 border-t border-slate-800 py-3.5 text-center text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>
+        <strong class="text-white">Career Maths Plus</strong> — Mentorship by <span class="text-amber-400 font-semibold">Sanket Chowdhury</span>
+      </div>
+      <div>
+        For Coaching & Guidance Call / WhatsApp: 
+        <a href="tel:8001514969" class="text-blue-400 font-mono-code font-bold hover:underline">8001514969</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * =========================================================================
+     * GOOGLE SHEET API URL CONFIGURATION
+     * Replace "YOUR_COPIED_WEB_APP_URL_HERE" with your deployed Google Apps Script URL.
+     * Example: "https://script.google.com/macros/s/AKfycbx.../exec"
+     * =========================================================================
+     */
+    const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxKSgRdN7czLC7VUBqsxIBBiw9qHj-XmIkAanfvXovODZfeiHPMD6AWK8hMJaXk-Sxb/exec";
+
+    /**
+     * THE OFFICIAL 204-WORD PASSAGE TEXT[cite: 2]
+     */
+    const PASSAGE_RAW = `A brisk morning walk always brings a sense of calm & clarity to a busy mind. At 6:30 a.m., the sun began to rise over the misty lake, casting a golden glow across the water. Old benches lined the gravel path, and early joggers moved along with steady determination.
+Life often moves at an intense pace; work deadlines, crowded trains, and endless alerts can leave anyone drained. Taking just 30–40 minutes each day to unplug is truly essential. A gentle breeze shook the pine trees, sending a few brown leaves drifting downward (a reminder that seasons change quickly).
+Nearby, a tiny cafe opened its wooden shutters with a cheerful clatter. The rich aroma of dark roast coffee filled the air, blending with the scent of damp earth. A neat chalkboard sign outside announced: "Fresh pastry + hot tea: $4.50 today only!" Several patrons stood in line, chatting quietly about the weather forecast, daily news, and weekend plans.
+Such simple habits cost 0% of our peace, yet they yield 100% returns in focus and vitality. As modern routines grow demanding, quiet rituals ground us. Taking a deep breath, setting clear goals, and stepping outside will always help one thrive!`;
+
+    // Active Candidate State[cite: 2]
+    let candidateData = {
+      name: '',
+      phone: '',
+      category: 'general',
+      rollId: ''
+    };
+
+    // Strict 10 Minutes Duration (Rule 3 & 4)[cite: 1, 2]
+    const FIXED_DURATION_SECONDS = 600; 
+    let secondsRemaining = FIXED_DURATION_SECONDS;
+    let timerInterval = null;
+    let testStarted = false;
+    let testPaused = false;
+    let baseFontSize = 16;
+    let loopCycle = 1;
+
+    // Tokenize reference passage[cite: 2]
+    const baseWords = PASSAGE_RAW.trim().split(/\s+/);
+    const baseWordCount = baseWords.length;
+
+    // Element Selectors[cite: 2]
+    const registrationScreen = document.getElementById('registrationScreen');
+    const examWorkspaceScreen = document.getElementById('examWorkspaceScreen');
+    const candidateEntryForm = document.getElementById('candidateEntryForm');
+    const candNameInput = document.getElementById('candNameInput');
+    const candPhoneInput = document.getElementById('candPhoneInput');
+    const candCategoryInput = document.getElementById('candCategoryInput');
+    const nameError = document.getElementById('nameError');
+    const phoneError = document.getElementById('phoneError');
+
+    const displayCandName = document.getElementById('displayCandName');
+    const displayCandPhone = document.getElementById('displayCandPhone');
+    const displayCandCat = document.getElementById('displayCandCat');
+    const displayRegId = document.getElementById('displayRegId');
+    const changeCandidateBtn = document.getElementById('changeCandidateBtn');
+
+    const typingInput = document.getElementById('typingInput');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const testStatusBadge = document.getElementById('testStatusBadge');
+    const startTestBtn = document.getElementById('startTestBtn');
+    const pauseTestBtn = document.getElementById('pauseTestBtn');
+    const submitTestBtn = document.getElementById('submitTestBtn');
+    const resetTestBtn = document.getElementById('resetTestBtn');
+    const typingLockOverlay = document.getElementById('typingLockOverlay');
+    const liveTypedWords = document.getElementById('liveTypedWords');
+    const liveTargetWords = document.getElementById('liveTargetWords');
+    const liveGrossWpm = document.getElementById('liveGrossWpm');
+    const livePassageLoop = document.getElementById('livePassageLoop');
+    const charCountBadge = document.getElementById('charCountBadge');
+    const referenceParagraph = document.getElementById('referenceMatterParagraph');
+    const badgeMinWords = document.getElementById('badgeMinWords');
+    const badgeCutoff = document.getElementById('badgeCutoff');
+
+    const rulesModal = document.getElementById('rulesModal');
+    const resultModal = document.getElementById('resultModal');
+    const leaderboardModal = document.getElementById('leaderboardModal');
+    const openLeaderboardBtn = document.getElementById('openLeaderboardBtn');
+    const closeLeaderboardBtn = document.getElementById('closeLeaderboardBtn');
+    const refreshLeaderboardBtn = document.getElementById('refreshLeaderboardBtn');
+
+    candidateEntryForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameVal = candNameInput.value.trim();
+      const phoneVal = candPhoneInput.value.trim();
+      let hasError = false;
+
+      if (!nameVal) {
+        nameError.classList.remove('hidden');
+        hasError = true;
+      } else {
+        nameError.classList.add('hidden');
+      }
+
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(phoneVal)) {
+        phoneError.classList.remove('hidden');
+        hasError = true;
+      } else {
+        phoneError.classList.add('hidden');
+      }
+
+      if (hasError) return;
+
+      const randomId = Math.floor(1000 + Math.random() * 9000);
+      candidateData = {
+        name: nameVal,
+        phone: phoneVal,
+        category: candCategoryInput.value,
+        rollId: `CMP-${randomId}`
+      };
+
+      displayCandName.textContent = candidateData.name;
+      displayCandPhone.textContent = candidateData.phone;
+      displayRegId.textContent = `ROLL: ${candidateData.rollId}`;
+      displayCandCat.textContent = candidateData.category === 'pwd' ? 'Blind / LV / LDCP' : 'General / Others';
+
+      const isPwd = candidateData.category === 'pwd';
+      liveTargetWords.textContent = isPwd ? '120' : '200';
+      badgeMinWords.textContent = isPwd ? '120 Words' : '200 Words';
+      badgeCutoff.textContent = isPwd ? '84 Marks' : '140 Marks';
+
+      registrationScreen.classList.add('hidden');
+      examWorkspaceScreen.classList.remove('hidden');
+      resetTest();
+    });
+
+    changeCandidateBtn.addEventListener('click', () => {
+      if (testStarted) {
+        const confirmChange = window.confirm("A test is currently in progress. Reset and switch candidate?");
+        if (!confirmChange) return;
+      }
+      resetTest();
+      examWorkspaceScreen.classList.add('hidden');
+      registrationScreen.classList.remove('hidden');
+    });
+
+    function initializeReferencePassage() {
+      referenceParagraph.textContent = PASSAGE_RAW;
+    }
+
+    function formatTime(secs) {
+      const m = Math.floor(secs / 60);
+      const s = secs % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function updateLiveStats() {
+      const typedContent = typingInput.value;
+      const totalChars = typedContent.length;
+      charCountBadge.textContent = `${totalChars} Total Keystrokes`;
+
+      const words = typedContent.trim() === '' ? [] : typedContent.trim().split(/\s+/);
+      const totalWords = words.length;
+      liveTypedWords.textContent = totalWords;
+
+      loopCycle = Math.max(1, Math.floor(totalWords / baseWordCount) + 1);
+      livePassageLoop.textContent = `Round ${loopCycle}`;
+
+      const elapsed = FIXED_DURATION_SECONDS - secondsRemaining;
+      if (elapsed > 2 && totalWords > 0) {
+        const minutes = elapsed / 60;
+        const grossWpm = Math.round((totalChars / 5) / minutes);
+        liveGrossWpm.innerHTML = `${grossWpm} <span class="text-xs font-normal text-slate-400">WPM</span>`;
+      } else {
+        liveGrossWpm.innerHTML = `0 <span class="text-xs font-normal text-slate-400">WPM</span>`;
+      }
+    }
+
+    typingInput.addEventListener('keydown', (e) => {
+      if (!testStarted || testPaused) return;
+
+      if (e.key === 'Enter') {
+        const currentText = typingInput.value.trim();
+        const currentWords = currentText === '' ? [] : currentText.split(/\s+/);
+        
+        if (currentWords.length >= baseWordCount) {
+          livePassageLoop.classList.add('text-emerald-600', 'font-black');
+          setTimeout(() => {
+            livePassageLoop.classList.remove('text-emerald-600', 'font-black');
+          }, 1500);
+        }
+      }
+    });
+
+    function startTimer() {
+      if (testStarted && !testPaused) return;
+
+      if (!testStarted) {
+        testStarted = true;
+        secondsRemaining = FIXED_DURATION_SECONDS;
+      }
+
+      testPaused = false;
+      typingInput.disabled = false;
+      typingLockOverlay.classList.add('hidden');
+      typingInput.focus();
+
+      startTestBtn.disabled = true;
+      startTestBtn.classList.add('opacity-40');
+      pauseTestBtn.disabled = false;
+      submitTestBtn.disabled = false;
+      changeCandidateBtn.disabled = true;
+      changeCandidateBtn.classList.add('opacity-50');
+
+      testStatusBadge.textContent = 'Exam Active';
+      testStatusBadge.className = 'text-xs px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/40 animate-pulse';
+
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        secondsRemaining--;
+        timerDisplay.textContent = formatTime(secondsRemaining);
+
+        if (secondsRemaining <= 60) {
+          timerDisplay.classList.remove('text-emerald-400');
+          timerDisplay.classList.add('text-red-400', 'animate-pulse');
+        }
+
+        if (secondsRemaining <= 0) {
+          clearInterval(timerInterval);
+          finishAndEvaluateTest('Timer Expired');
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      if (!testStarted || testPaused) return;
+      testPaused = true;
+      clearInterval(timerInterval);
+      typingInput.disabled = true;
+      typingLockOverlay.classList.remove('hidden');
+
+      startTestBtn.disabled = false;
+      startTestBtn.classList.remove('opacity-40');
+      startTestBtn.innerHTML = `<i class="fa-solid fa-play text-xs"></i> Resume`;
+      pauseTestBtn.disabled = true;
+
+      testStatusBadge.textContent = 'Paused';
+      testStatusBadge.className = 'text-xs px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-semibold border border-amber-500/40';
+    }
+
+    function resetTest() {
+      clearInterval(timerInterval);
+      testStarted = false;
+      testPaused = false;
+      secondsRemaining = FIXED_DURATION_SECONDS;
+      loopCycle = 1;
+
+      timerDisplay.textContent = formatTime(secondsRemaining);
+      timerDisplay.className = 'text-2xl font-mono-code font-bold tracking-wider text-emerald-400';
+      testStatusBadge.textContent = 'Ready';
+      testStatusBadge.className = 'text-xs px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-semibold border border-slate-700';
+
+      typingInput.value = '';
+      typingInput.disabled = true;
+      typingLockOverlay.classList.remove('hidden');
+
+      startTestBtn.disabled = false;
+      startTestBtn.classList.remove('opacity-40');
+      startTestBtn.innerHTML = `<i class="fa-solid fa-play text-xs"></i> Start`;
+      pauseTestBtn.disabled = true;
+      submitTestBtn.disabled = true;
+      changeCandidateBtn.disabled = false;
+      changeCandidateBtn.classList.remove('opacity-50');
+
+      liveTypedWords.textContent = '0';
+      liveGrossWpm.innerHTML = `0 <span class="text-xs font-normal text-slate-400">WPM</span>`;
+      livePassageLoop.textContent = 'Round 1';
+      charCountBadge.textContent = '0 Total Keystrokes';
+    }
+
+    function stripPunct(str) {
+      return str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"'–—]/g, "");
+    }
+    function extractPunct(str) {
+      return str.replace(/[a-zA-Z0-9]/g, "");
+    }
+
+    function evaluateSubmission(typedTokens) {
+      const typedLen = typedTokens.length;
+      if (typedLen === 0) {
+        return { majorMistakes: [], minorMistakes: [] };
+      }
+
+      const roundsNeeded = Math.ceil(typedLen / baseWordCount);
+      let targetReferenceWords = [];
+      for (let r = 0; r < roundsNeeded; r++) {
+        targetReferenceWords = targetReferenceWords.concat(baseWords);
+      }
+
+      let majorMistakes = [];
+      let minorMistakes = [];
+
+      for (let i = 0; i < typedLen; i++) {
+        const tWord = typedTokens[i];
+        const rWord = targetReferenceWords[i];
+
+        if (!rWord) {
+          majorMistakes.push({
+            rule: "Rule 5(a) Foreign Word Insertion",
+            type: "Major",
+            penalty: 0.33,
+            expected: "[None]",
+            actual: tWord,
+            description: `Inserted extra word "${tWord}".`
+          });
+          continue;
+        }
+
+        if (tWord === rWord) {
+          continue;
+        }
+
+        const tClean = stripPunct(tWord);
+        const rClean = stripPunct(rWord);
+        const tPunct = extractPunct(tWord);
+        const rPunct = extractPunct(rWord);
+
+        if (tPunct.length > rPunct.length && tClean.toLowerCase() === rClean.toLowerCase()) {
+          majorMistakes.push({
+            rule: "Rule 5(d) Punctuation Insertion",
+            type: "Major",
+            penalty: 0.33,
+            expected: rWord,
+            actual: tWord,
+            description: `Inserted punctuation in "${tWord}" (Expected "${rWord}").`
+          });
+          continue;
+        }
+
+        if (tClean.toLowerCase() !== rClean.toLowerCase()) {
+          majorMistakes.push({
+            rule: "Rule 5(c) Spelling Mistake",
+            type: "Major",
+            penalty: 0.33,
+            expected: rWord,
+            actual: tWord,
+            description: `Spelling error: typed "${tWord}" instead of "${rWord}".`
+          });
+          continue;
+        }
+
+        if (tClean !== rClean && tClean.toLowerCase() === rClean.toLowerCase()) {
+          minorMistakes.push({
+            rule: "Rule 5(e) Case Mismatch",
+            type: "Minor",
+            penalty: 0.15,
+            expected: rWord,
+            actual: tWord,
+            description: `Letter case mismatch: typed "${tWord}" instead of "${rWord}".`
+          });
+        }
+
+        if (tPunct !== rPunct) {
+          minorMistakes.push({
+            rule: "Rule 5(b) Punctuation Error/Omission",
+            type: "Minor",
+            penalty: 0.15,
+            expected: rWord,
+            actual: tWord,
+            description: `Punctuation error on "${tWord}" (Expected "${rWord}").`
+          });
+        }
+      }
+
+      return { majorMistakes, minorMistakes };
+    }
+
+    /**
+     * Submits evaluation results to Google Sheets
+     */
+    function sendDataToGoogleSheet(payload) {
+      const syncText = document.getElementById('sheetSyncStatusText');
+      
+      if (!GOOGLE_SHEET_API_URL || GOOGLE_SHEET_API_URL.includes("YOUR_COPIED_WEB_APP_URL_HERE")) {
+        if (syncText) {
+          syncText.innerHTML = '<span class="text-amber-600">⚠️ Local only (Set GOOGLE_SHEET_API_URL in script)</span>';
+        }
+        return;
+      }
+
+      if (syncText) {
+        syncText.innerHTML = '<span class="text-blue-600 animate-pulse">Syncing with Google Sheets...</span>';
+      }
+
+      fetch(GOOGLE_SHEET_API_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        if (syncText) {
+          syncText.innerHTML = '<span class="text-emerald-600 font-bold">✓ Successfully saved to Google Sheet</span>';
+        }
+      })
+      .catch((err) => {
+        console.error("Submission failed", err);
+        if (syncText) {
+          syncText.innerHTML = '<span class="text-red-500 font-bold">✕ Sync error (Saved locally)</span>';
+        }
+      });
+    }
+
+    function finishAndEvaluateTest(reason = 'Submission') {
+      clearInterval(timerInterval);
+      testStarted = false;
+      testPaused = false;
+      typingInput.disabled = true;
+      typingLockOverlay.classList.remove('hidden');
+
+      const category = candidateData.category;
+      const timeSpent = Math.max(1, FIXED_DURATION_SECONDS - secondsRemaining);
+      const minutesSpent = timeSpent / 60;
+
+      const rawTyped = typingInput.value.trim();
+      const typedTokens = rawTyped === '' ? [] : rawTyped.split(/\s+/);
+      const typedWordCount = typedTokens.length;
+
+      const evalResult = evaluateSubmission(typedTokens);
+      const majorCount = evalResult.majorMistakes.length;
+      const minorCount = evalResult.minorMistakes.length;
+
+      const majorDeduction = majorCount * 0.33;
+      const minorDeduction = minorCount * 0.15;
+      const calculatedMarks = Math.max(0, typedWordCount - majorDeduction - minorDeduction);
+
+      const minRequired = (category === 'pwd') ? 120 : 200;
+      const qualifyingCutoff = (category === 'pwd') ? 84 : 140;
+
+      const isDisqualifiedByWordCount = typedWordCount < minRequired;
+      const isQualifiedByMarks = calculatedMarks >= qualifyingCutoff;
+      const isCandidateQualified = !isDisqualifiedByWordCount && isQualifiedByMarks;
+      const resultStatus = isCandidateQualified ? 'QUALIFIED' : 'DISQUALIFIED';
+
+      const accuracyVal = typedWordCount > 0 
+        ? Math.max(0, Math.round(((typedWordCount - (majorCount + minorCount)) / typedWordCount) * 100)) 
+        : 0;
+
+      // Populate Candidate profile on Scorecard
+      document.getElementById('scoreCandName').textContent = candidateData.name || 'Candidate';
+      document.getElementById('scoreCandPhone').textContent = candidateData.phone || '----------';
+      document.getElementById('scoreCandRoll').textContent = candidateData.rollId || 'CMP-XXXX';
+      document.getElementById('scoreCandCategory').textContent = category === 'pwd' ? 'Blind / LV / LDCP' : 'General / Others';
+
+      const statusBanner = document.getElementById('statusBanner');
+      const statusIcon = document.getElementById('statusIcon');
+      const statusTitle = document.getElementById('statusTitle');
+      const statusReason = document.getElementById('statusReason');
+
+      if (isCandidateQualified) {
+        statusBanner.className = "p-4 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-900 flex flex-col sm:flex-row items-center justify-between gap-4";
+        statusIcon.className = "w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center text-2xl font-bold shadow";
+        statusIcon.textContent = "✓";
+        statusTitle.className = "text-2xl font-extrabold text-emerald-700 tracking-tight";
+        statusTitle.textContent = "QUALIFIED";
+        statusReason.textContent = `Candidate met minimum word threshold (${typedWordCount} / ${minRequired}) and scored ${calculatedMarks.toFixed(2)} Marks (Cutoff: ${qualifyingCutoff}).`;
+      } else {
+        statusBanner.className = "p-4 rounded-xl border border-red-300 bg-red-50 text-red-900 flex flex-col sm:flex-row items-center justify-between gap-4";
+        statusIcon.className = "w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center text-2xl font-bold shadow";
+        statusIcon.textContent = "✕";
+        statusTitle.className = "text-2xl font-extrabold text-red-700 tracking-tight";
+        statusTitle.textContent = "DISQUALIFIED";
+        if (isDisqualifiedByWordCount) {
+          statusReason.textContent = `Disqualified under Rule ${category === 'pwd' ? '4' : '3'}: Typed ${typedWordCount} words, below mandatory threshold of ${minRequired} words in 10 minutes.`;
+        } else {
+          statusReason.textContent = `Disqualified under Rule 6: Scored ${calculatedMarks.toFixed(2)} marks, below qualifying cutoff of ${qualifyingCutoff} marks.`;
+        }
+      }
+
+      document.getElementById('finalScoreVal').textContent = calculatedMarks.toFixed(2);
+      document.getElementById('cutoffCompareText').textContent = `Qualifying Cutoff: ${qualifyingCutoff.toFixed(2)} Marks`;
+
+      document.getElementById('resCategory').textContent = category === 'pwd' ? 'Blind / LV / LDCP' : 'General / Others';
+      document.getElementById('resMinWordsReq').textContent = `Min. ${minRequired} Required`;
+
+      document.getElementById('resTypedWords').textContent = typedWordCount;
+      const wordCheckEl = document.getElementById('resWordCheck');
+      if (isDisqualifiedByWordCount) {
+        wordCheckEl.textContent = `Below threshold (-${minRequired - typedWordCount} words)`;
+        wordCheckEl.className = "text-[10px] font-semibold text-red-600";
+      } else {
+        wordCheckEl.textContent = `Threshold met (≥ ${minRequired})`;
+        wordCheckEl.className = "text-[10px] font-semibold text-emerald-600";
+      }
+
+      document.getElementById('resMajorCount').textContent = majorCount;
+      document.getElementById('resMajorDeduction').textContent = `-${majorDeduction.toFixed(2)} marks (× 0.33)`;
+
+      document.getElementById('resMinorCount').textContent = minorCount;
+      document.getElementById('resMinorDeduction').textContent = `-${minorDeduction.toFixed(2)} marks (× 0.15)`;
+
+      document.getElementById('resTimeTaken').textContent = formatTime(timeSpent);
+      
+      const grossSpeed = ((rawTyped.length / 5) / minutesSpent).toFixed(1);
+      document.getElementById('resGrossWpm').textContent = `${grossSpeed} WPM`;
+      document.getElementById('resCompletedLoops').textContent = `${Math.ceil(typedWordCount / baseWordCount)} Round(s)`;
+
+      document.getElementById('formulaBreakdownStr').textContent =
+        `Marks = ${typedWordCount} — (0.33 × ${majorCount}) — (0.15 × ${minorCount}) = ${typedWordCount} — ${majorDeduction.toFixed(2)} — ${minorDeduction.toFixed(2)} = ${calculatedMarks.toFixed(2)}`;
+
+      const mistakeList = document.getElementById('mistakesListContainer');
+      mistakeList.innerHTML = '';
+      const allMistakes = [...evalResult.majorMistakes, ...evalResult.minorMistakes];
+      document.getElementById('mistakeBadgeSummary').textContent = `Total Mistakes: ${allMistakes.length} (${majorCount} Major, ${minorCount} Minor)`;
+
+      if (allMistakes.length === 0) {
+        mistakeList.innerHTML = `<p class="text-emerald-700 font-medium text-center py-4 bg-emerald-50 rounded-lg">✨ Outstanding performance! Zero Major or Minor mistakes recorded.</p>`;
+      } else {
+        allMistakes.forEach((err) => {
+          const isMajor = err.type === 'Major';
+          const item = document.createElement('div');
+          item.className = `p-2 rounded-lg border ${isMajor ? 'bg-red-50/70 border-red-200' : 'bg-amber-50/70 border-amber-200'} flex items-start justify-between gap-2`;
+          item.innerHTML = `
+            <div>
+              <span class="inline-block px-1.5 py-0.5 rounded text-[10px] font-bold ${isMajor ? 'bg-red-200 text-red-900' : 'bg-amber-200 text-amber-900'}">
+                ${err.rule}
+              </span>
+              <span class="text-slate-800 ml-1.5 font-medium">${err.description}</span>
+            </div>
+            <span class="text-[11px] font-mono-code font-bold ${isMajor ? 'text-red-700' : 'text-amber-700'} whitespace-nowrap">
+              -${err.penalty}
+            </span>
+          `;
+          mistakeList.appendChild(item);
+        });
+      }
+
+      resultModal.classList.remove('hidden');
+
+      // Send payload to Google Sheets
+      sendDataToGoogleSheet({
+        rollNo: candidateData.rollId,
+        name: candidateData.name,
+        phone: candidateData.phone,
+        category: category,
+        typedWords: typedWordCount,
+        majorMistakes: majorCount,
+        minorMistakes: minorCount,
+        finalMarks: parseFloat(calculatedMarks.toFixed(2)),
+        accuracy: accuracyVal,
+        resultStatus: resultStatus
+      });
+    }
+
+    /**
+     * Fetch & Display Live Leaderboard
+     */
+    async function loadLeaderboard() {
+      const container = document.getElementById('leaderboardContainer');
+      container.innerHTML = '<p class="text-center text-slate-500 py-6"><i class="fa-solid fa-circle-notch fa-spin text-blue-600 mr-2"></i>Loading leaderboard from Google Sheets...</p>';
+
+      if (!GOOGLE_SHEET_API_URL || GOOGLE_SHEET_API_URL.includes("YOUR_COPIED_WEB_APP_URL_HERE")) {
+        container.innerHTML = `
+          <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-center text-xs text-amber-900">
+            <p class="font-bold">Google Sheet URL not configured.</p>
+            <p class="mt-1">Please replace <code>const GOOGLE_SHEET_API_URL = "YOUR_COPIED_WEB_APP_URL_HERE";</code> at line 440 with your actual Web App URL.</p>
+          </div>
+        `;
+        return;
+      }
+
+      try {
+        const response = await fetch(GOOGLE_SHEET_API_URL);
+        const data = await response.json();
+
+        if (!data || data.length === 0) {
+          container.innerHTML = '<p class="text-center text-slate-400 py-6">No exam entries recorded yet. Be the first!</p>';
+          return;
+        }
+
+        let html = `
+          <table class="w-full text-left text-xs border border-slate-200 rounded-lg overflow-hidden">
+            <thead class="bg-slate-100 text-slate-600 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-2.5 px-3">Rank</th>
+                <th class="py-2.5 px-3">Candidate</th>
+                <th class="py-2.5 px-3 text-center">Words</th>
+                <th class="py-2.5 px-3 text-center">Accuracy</th>
+                <th class="py-2.5 px-3 text-right">Marks</th>
+                <th class="py-2.5 px-3 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium">
+        `;
+
+        data.forEach((entry, idx) => {
+          const rankBadge = idx === 0 ? '🥇 1' : idx === 1 ? '🥈 2' : idx === 2 ? '🥉 3' : `#${idx + 1}`;
+          const isPass = entry.resultStatus === 'QUALIFIED';
+          html += `
+            <tr class="hover:bg-slate-50 transition">
+              <td class="py-2 px-3 font-bold">${rankBadge}</td>
+              <td class="py-2 px-3 font-semibold text-slate-800">${entry.name}</td>
+              <td class="py-2 px-3 text-center font-mono-code">${entry.typedWords}</td>
+              <td class="py-2 px-3 text-center font-mono-code">${entry.accuracy}%</td>
+              <td class="py-2 px-3 text-right font-mono-code font-bold text-blue-700">${parseFloat(entry.finalMarks).toFixed(2)}</td>
+              <td class="py-2 px-3 text-center">
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${isPass ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
+                  ${entry.resultStatus}
+                </span>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table>`;
+        container.innerHTML = html;
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = '<p class="text-center text-red-500 py-6 text-xs font-semibold">Unable to fetch leaderboard at this moment.</p>';
+      }
+    }
+
+    startTestBtn.addEventListener('click', startTimer);
+    pauseTestBtn.addEventListener('click', pauseTimer);
+    submitTestBtn.addEventListener('click', () => finishAndEvaluateTest('Candidate Submitted'));
+    resetTestBtn.addEventListener('click', resetTest);
+    typingInput.addEventListener('input', updateLiveStats);
+
+    // Examination proctor security: block copy, cut, paste[cite: 2]
+    ['cut', 'copy', 'paste'].forEach(evt => {
+      typingInput.addEventListener(evt, (e) => {
+        e.preventDefault();
+        const originalPlaceholder = typingInput.placeholder;
+        typingInput.placeholder = "⚠️ Copy, paste, and cut are disabled in examination mode.";
+        setTimeout(() => {
+          typingInput.placeholder = originalPlaceholder;
+        }, 2200);
+      });
+    });
+
+    // Font size adjustments[cite: 2]
+    document.getElementById('fontSizeIncBtn').addEventListener('click', () => {
+      if (baseFontSize < 24) {
+        baseFontSize += 2;
+        referenceParagraph.style.fontSize = `${baseFontSize}px`;
+        typingInput.style.fontSize = `${baseFontSize}px`;
+      }
+    });
+
+    document.getElementById('fontSizeDecBtn').addEventListener('click', () => {
+      if (baseFontSize > 13) {
+        baseFontSize -= 2;
+        referenceParagraph.style.fontSize = `${baseFontSize}px`;
+        typingInput.style.fontSize = `${baseFontSize}px`;
+      }
+    });
+
+    // Modal triggers[cite: 2]
+    document.getElementById('rulesModalBtn').addEventListener('click', () => rulesModal.classList.remove('hidden'));
+    document.getElementById('closeRulesBtn').addEventListener('click', () => rulesModal.classList.add('hidden'));
+    document.getElementById('gotItRulesBtn').addEventListener('click', () => rulesModal.classList.add('hidden'));
+
+    document.getElementById('closeResultBtn').addEventListener('click', () => resultModal.classList.add('hidden'));
+    document.getElementById('dismissModalBtn').addEventListener('click', () => resultModal.classList.add('hidden'));
+    document.getElementById('retakeExamBtn').addEventListener('click', () => {
+      resultModal.classList.add('hidden');
+      resetTest();
+      startTimer();
+    });
+
+    document.getElementById('printReportBtn').addEventListener('click', () => {
+      window.print();
+    });
+
+    // Leaderboard Modal Handlers
+    openLeaderboardBtn.addEventListener('click', () => {
+      leaderboardModal.classList.remove('hidden');
+      loadLeaderboard();
+    });
+    closeLeaderboardBtn.addEventListener('click', () => leaderboardModal.classList.add('hidden'));
+    refreshLeaderboardBtn.addEventListener('click', loadLeaderboard);
+
+    window.onload = () => {
+      initializeReferencePassage();
+    };
+  </script>
+</body>
+</html>
